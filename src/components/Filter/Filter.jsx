@@ -7,13 +7,11 @@ import { LabelStyled } from './Filter.styled';
 function Filter() {
   const filterValue = useSelector(phonebookSelectors.getFilter);
   const dispatch = useDispatch();
-  const inputId = uuidv4();
 
   return (
-    <LabelStyled htmlFor="inputId">
+    <LabelStyled>
       <span>Find contacts by name:</span>
       <Input
-        id={inputId}
         type="text"
         value={filterValue}
         onChange={e => dispatch(phonebookReducer.changeFilter(e.target.value))}

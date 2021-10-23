@@ -9,17 +9,18 @@ const Input = ({
   required,
   value,
   onChange,
+  autoComplete = 'off',
 }) => {
   return (
     <InputStyled
       type={type}
-      id={id}
       name={name}
       pattern={pattern}
       title={title}
       required={required}
       value={value}
       onChange={onChange}
+      autoComplete={autoComplete}
     />
   );
 };

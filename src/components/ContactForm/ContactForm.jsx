@@ -17,9 +17,6 @@ const ContactForm = () => {
     setNumber('');
   }, [contacts.length]);
 
-  const nameInputId = uuidv4();
-  const numberInputId = uuidv4();
-
   const handleOnChange = e => {
     switch (e.target.name) {
       case 'name':
@@ -43,21 +40,24 @@ const ContactForm = () => {
       return;
     }
 
-    await addContact({ name, number });
-    toast.success(`Contact added`);
-
     if (error) {
       toast.error(error);
+    }
+
+    try {
+      await addContact({ name, number });
+      toast.success(`Contact added`);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
     <FormStyled autoComplete={'off'} onSubmit={handleSubmit}>
       <LabelsWrapper>
-        <label htmlFor={nameInputId}>
+        <label>
           <span>Name:</span>
           <Input
-            id={nameInputId}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -67,10 +67,9 @@ const ContactForm = () => {
             onChange={handleOnChange}
           />
         </label>
-        <label htmlFor={numberInputId}>
+        <label>
           <span>Number:</span>
           <Input
-            id={numberInputId}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
