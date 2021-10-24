@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
 import { phonebookApi } from 'redux/phonebook';
 import { Input } from 'components/_share/Input/Input';

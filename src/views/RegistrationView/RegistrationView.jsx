@@ -3,6 +3,7 @@ import { Page } from 'components/Page/Page';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import { Link } from 'react-router-dom';
 import { RegistrationForm } from 'components/RegistrationForm/RegistrationForm';
+import { Toaster } from 'react-hot-toast';
 
 const RegistrationView = () => {
   return (
@@ -19,6 +20,7 @@ const RegistrationView = () => {
           <RegistrationForm />
         </Wrapper>
       </Page>
+      <Toaster />
     </>
   );
 };
