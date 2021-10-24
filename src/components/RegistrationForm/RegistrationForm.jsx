@@ -6,15 +6,19 @@ import { getError, getUserName } from 'redux/auth/auth-selectors';
 import { Input } from 'components/_share/Input/Input';
 
 export const RegistrationForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
 
-  const handleNameInput = e => setName(e.target.value);
-  const handleEmailInput = e => setEmail(e.target.value);
-  const handlePasswordInput = e => setPassword(e.target.value);
-  const handleConfirmPasswordInput = e => setConfirmPassword(e.target.value);
+  const handleNameInput = e => setUser({ ...user, name: e.target.value });
+  const handleEmailInput = e => setUser({ ...user, email: e.target.value });
+  const handlePasswordInput = e =>
+    setUser({ ...user, password: e.target.value });
+  const handleConfirmPasswordInput = e =>
+    setUser({ ...user, confirmPassword: e.target.value });
 
   const dispatch = useDispatch();
   const error = useSelector(getError);
@@ -23,14 +27,14 @@ export const RegistrationForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
+    if (user.password !== user.confirmPassword) {
       alert('Пароли не совпадают!');
       return;
     }
     const newUser = {
-      name,
-      email,
-      password,
+      name: user.name,
+      email: user.email,
+      password: user.password,
     };
     dispatch(registration(newUser));
   };
@@ -62,7 +66,8 @@ export const RegistrationForm = () => {
             name="name"
             required
             title="Enter your name"
-            value={name}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            value={user.name}
             onChange={handleNameInput}
           />
         </label>
@@ -73,7 +78,7 @@ export const RegistrationForm = () => {
             name="email"
             required
             title="Enter your email"
-            value={email}
+            value={user.email}
             onChange={handleEmailInput}
           />
         </label>
@@ -84,7 +89,8 @@ export const RegistrationForm = () => {
             name="password"
             required
             title="Enter your password"
-            value={password}
+            minLength="7"
+            value={user.password}
             onChange={handlePasswordInput}
           />
         </label>
@@ -95,7 +101,8 @@ export const RegistrationForm = () => {
             name="confirmPassword"
             required
             title="Confirm your password"
-            value={confirmPassword}
+            minLength="7"
+            value={user.confirmPassword}
             onChange={handleConfirmPasswordInput}
           />
         </label>

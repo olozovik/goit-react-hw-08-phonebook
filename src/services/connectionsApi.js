@@ -20,3 +20,13 @@ export const fetchRegistration = async newUser => {
     throw error.response;
   }
 };
+
+export const fetchLogin = async user => {
+  try {
+    const data = await axios.post('/users/login', user);
+    token.set(data.data.token);
+    return data;
+  } catch (error) {
+    throw error.response;
+  }
+};

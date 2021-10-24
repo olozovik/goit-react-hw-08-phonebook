@@ -1,7 +1,6 @@
 import { InputStyled } from './InputStyled';
 
 const Input = ({
-  id,
   type,
   name,
   pattern,
@@ -10,6 +9,7 @@ const Input = ({
   value,
   onChange,
   autoComplete = 'off',
+  minLength = 1,
 }) => {
   return (
     <InputStyled
@@ -21,6 +21,7 @@ const Input = ({
       value={value}
       onChange={onChange}
       autoComplete={autoComplete}
+      minLength={minLength}
     />
   );
 };

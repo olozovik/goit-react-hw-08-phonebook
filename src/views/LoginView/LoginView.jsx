@@ -2,6 +2,8 @@ import { MainHeading } from 'components/MainHeading/MainHeading';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import { Page } from 'components/Page/Page';
 import { Link } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { LoginForm } from '../../components/LoginForm/LoginForm';
 
 const LoginView = () => {
   return (
@@ -9,13 +11,13 @@ const LoginView = () => {
       <Page>
         <Wrapper>
           <MainHeading />
-          <p>
-            Have you not registered yet? - {<Link to="/register">Sign Up</Link>}
-          </p>
-          <h2>Login</h2>
+          <h2>Enter to your account:</h2>
+          <p>Not registered yet? - {<Link to="/register">Sign Up</Link>}</p>
           <hr />
+          <LoginForm />
         </Wrapper>
       </Page>
+      <Toaster />
     </>
   );
 };
