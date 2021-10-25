@@ -1,4 +1,4 @@
-import { MainHeading } from 'components/MainHeading/MainHeading';
+import { Header } from 'components/Header/Header';
 import { Page } from 'components/Page/Page';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ const RegistrationView = () => {
     <>
       <Page>
         <Wrapper>
-          <MainHeading />
+          <Header />
           {/*Have you already registered? <Link>Login In</Login>*/}
           <h2>Create account:</h2>
           <p>Already registered? - {<Link to="/login">Login In</Link>}</p>

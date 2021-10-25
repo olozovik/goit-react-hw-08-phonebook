@@ -1,4 +1,4 @@
-import { MainHeading } from 'components/MainHeading/MainHeading';
+import { Header } from 'components/Header/Header';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import { Page } from 'components/Page/Page';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ const LoginView = () => {
     <>
       <Page>
         <Wrapper>
-          <MainHeading />
+          <Header />
           <h2>Enter to your account:</h2>
           <p>Not registered yet? - {<Link to="/register">Sign Up</Link>}</p>
           <hr />

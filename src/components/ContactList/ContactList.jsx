@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
-import { phonebookApi, phonebookSelectors } from 'redux/phonebook';
+import { useDispatch, useSelector } from 'react-redux';
+import { phonebookSelectors } from 'redux/phonebook';
 import { ButtonDelete } from '../ButtonDelete/ButtonDelete';
 import {
   FirstColumn,
@@ -9,28 +8,27 @@ import {
   SecondColumn,
   TableStyled,
 } from './ContactList.styled';
+import { fetchContacts } from '../../redux/phonebook/phonebook-operations';
+import { getContacts } from '../../redux/phonebook/phonebook-selectors';
 
 function ContactList() {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+
   const perPageContacts = 10;
-
-  const { data: contacts = [], error } = phonebookApi.useGetContactsQuery();
-
-  const filter = useSelector(phonebookSelectors.getFilter);
+  const [page, setPage] = useState(1);
+  const handleLoadMoreButton = () => setPage(p => p + 1);
 
   const [filterResultStatus, setFilterResultStatus] = useState('idle');
-  const [page, setPage] = useState(1);
+  const filter = useSelector(phonebookSelectors.getFilter);
 
-  const handleLoadMoreButton = () => setPage(p => p + 1);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const filteredContacts = contacts.filter(({ name }) =>
     name.toLowerCase().includes(filter.toLowerCase()),
   );
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error.status);
-    }
-  }, [error]);
 
   useEffect(() => {
     if (!filter && contacts.length) setFilterResultStatus('idle');
@@ -52,7 +50,7 @@ function ContactList() {
       <TableStyled>
         <tbody>
           {filteredContacts
-            ?.sort((a, b) => b.id - a.id)
+            ?.reverse()
             .slice(0, numberContactsToShow)
             .map(({ id, name, number }) => {
               return (

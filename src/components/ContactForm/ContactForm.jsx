@@ -1,15 +1,22 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { phonebookApi } from 'redux/phonebook';
 import { Input } from 'components/_share/Input/Input';
 import { FormStyled, LabelsWrapper } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getContacts,
+  getError,
+} from '../../redux/phonebook/phonebook-selectors';
+import { fetchAddContact } from '../../redux/phonebook/phonebook-operations';
 
 const ContactForm = () => {
-  const { data: contacts = [] } = phonebookApi.useGetContactsQuery();
-  const [addContact, { error }] = phonebookApi.useAddContactMutation();
+  const contacts = useSelector(getContacts);
+  const error = useSelector(getError);
+  const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setName('');
@@ -38,18 +45,22 @@ const ContactForm = () => {
       toast.error(`${name} is already in contacts`);
       return;
     }
+    setIsLoading(true);
+    await dispatch(fetchAddContact({ name, number }));
+  };
+
+  useEffect(() => {
+    if (!isLoading) return;
 
     if (error) {
-      toast.error(error);
+      toast.error('The contacts is not added');
+      setIsLoading(false);
+      return;
     }
 
-    try {
-      await addContact({ name, number });
-      toast.success(`Contact added`);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    toast.success('The contacts is added');
+    setIsLoading(false);
+  }, [contacts, isLoading]);
 
   return (
     <FormStyled autoComplete={'off'} onSubmit={handleSubmit}>

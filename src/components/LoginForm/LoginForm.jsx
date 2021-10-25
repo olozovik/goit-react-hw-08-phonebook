@@ -1,7 +1,9 @@
 import { Input } from '../_share/Input/Input';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/auth-operations';
+import { getError } from '../../redux/auth/auth-selectors';
+import toast from 'react-hot-toast';
 
 export const LoginForm = () => {
   const [user, setUser] = useState({
@@ -10,6 +12,12 @@ export const LoginForm = () => {
   });
 
   const dispatch = useDispatch();
+  const error = useSelector(getError);
+
+  useEffect(() => {
+    if (!error) return;
+    toast.error('Error. Try a different email or password, or try again later');
+  }, [error]);
 
   const handleEmailInput = e => {
     setUser({ ...user, email: e.target.value });
