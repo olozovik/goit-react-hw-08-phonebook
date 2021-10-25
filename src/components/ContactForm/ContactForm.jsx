@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { Input } from 'components/_share/Input/Input';
 import { FormStyled, LabelsWrapper } from './ContactForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  getContacts,
-  getError,
-} from '../../redux/phonebook/phonebook-selectors';
-import { fetchAddContact } from '../../redux/phonebook/phonebook-operations';
+import { phonebookOperations, phonebookSelectors } from 'redux/phonebook';
 
 const ContactForm = () => {
-  const contacts = useSelector(getContacts);
-  const error = useSelector(getError);
+  const contacts = useSelector(phonebookSelectors.getContacts);
+  const error = useSelector(phonebookSelectors.getError);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
@@ -46,7 +42,7 @@ const ContactForm = () => {
       return;
     }
     setIsLoading(true);
-    await dispatch(fetchAddContact({ name, number }));
+    await dispatch(phonebookOperations.fetchAddContact({ name, number }));
   };
 
   useEffect(() => {

@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { Header } from 'components/Header/Header';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import { Page } from 'components/Page/Page';
-import { Link } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-import { LoginForm } from '../../components/LoginForm/LoginForm';
+import { LoginForm } from 'components/LoginForm/LoginForm';
+import { ToRegister } from './LoginView.styled';
 
 const LoginView = () => {
   return (
@@ -11,10 +12,10 @@ const LoginView = () => {
       <Page>
         <Wrapper>
           <Header />
-          <h2>Enter to your account:</h2>
-          <p>Not registered yet? - {<Link to="/register">Sign Up</Link>}</p>
-          <hr />
           <LoginForm />
+          <ToRegister>
+            Not registered yet? - {<Link to="/register">Sign up</Link>}
+          </ToRegister>
         </Wrapper>
       </Page>
       <Toaster />

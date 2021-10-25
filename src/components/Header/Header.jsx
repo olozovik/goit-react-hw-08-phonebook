@@ -1,19 +1,19 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelectors, authOperations } from 'redux/auth';
 import {
   ButtonStyled,
   HeaderStyled,
   LinkStyled,
   WelcomeText,
+  WelcomeWrapper,
 } from './Header.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserName } from '../../redux/auth/auth-selectors';
-import { logout } from '../../redux/auth/auth-operations';
 
 export const Header = ({ logoutButton = false }) => {
-  const name = useSelector(getUserName);
+  const name = useSelector(authSelectors.getUserName);
   const dispatch = useDispatch();
 
   const handleLogoutButton = () => {
-    dispatch(logout());
+    dispatch(authOperations.logout());
   };
 
   return (
@@ -22,12 +22,12 @@ export const Header = ({ logoutButton = false }) => {
         <LinkStyled to="/">Phonebook</LinkStyled>
       </h1>
       {logoutButton && (
-        <div>
-          <WelcomeText>Hello, {name}</WelcomeText>
+        <WelcomeWrapper>
+          <WelcomeText>Welcome, {name}</WelcomeText>
           <ButtonStyled type="button" onClick={handleLogoutButton}>
             Log out
           </ButtonStyled>
-        </div>
+        </WelcomeWrapper>
       )}
     </HeaderStyled>
   );

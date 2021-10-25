@@ -17,27 +17,37 @@ export const LinkStyled = styled(Link)`
   text-decoration: none;
 `;
 
+export const WelcomeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  @media (max-width: 483px) {
+    align-items: flex-start;
+  }
+`;
+
 export const WelcomeText = styled.span`
   font-size: 16px;
-  margin-right: 10px;
+  font-weight: 600;
 `;
 
 export const ButtonStyled = styled.button`
   flex-shrink: 0;
-  padding: 6px 10px;
+  padding: 10px 0px;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 
   border: none;
   border-radius: 3px;
+  background-color: transparent;
+  text-decoration: underline;
   cursor: pointer;
-  box-shadow: 0 0 0 transparent inset, 0 0 2px 1px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 150ms linear, color 150ms linear;
+  transition: color 150ms linear;
 
   &:hover,
   &:active {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3) inset, 0 0 0 transparent;
     color: ${({ theme }) => theme.buttonActiveHover};
   }
 `;

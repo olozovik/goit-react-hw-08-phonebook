@@ -1,8 +1,8 @@
-import { useDispatch } from 'react-redux';
-import { phonebookReducer } from 'redux/phonebook';
-import { Input } from 'components/_share/Input/Input';
-import { LabelStyled } from './Filter.styled';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Input } from 'components/_share/Input/Input';
+import { phonebookReducer } from 'redux/phonebook';
+import { LabelStyled } from './Filter.styled';
 
 function Filter() {
   const [filterValue, setFilterValue] = useState('');

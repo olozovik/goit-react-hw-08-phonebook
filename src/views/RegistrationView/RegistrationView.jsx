@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { Header } from 'components/Header/Header';
 import { Page } from 'components/Page/Page';
 import { Wrapper } from 'components/Wrapper/Wrapper';
-import { Link } from 'react-router-dom';
 import { RegistrationForm } from 'components/RegistrationForm/RegistrationForm';
-import { Toaster } from 'react-hot-toast';
+import { CreateAccountHeading, ToLogin } from './RegistrationView.styled';
 
 const RegistrationView = () => {
   return (
@@ -11,10 +12,11 @@ const RegistrationView = () => {
       <Page>
         <Wrapper>
           <Header />
-          <h2>Create account:</h2>
-          <p>Already registered? - {<Link to="/login">Login In</Link>}</p>
-          <hr />
+          <CreateAccountHeading>Create account:</CreateAccountHeading>
           <RegistrationForm />
+          <ToLogin>
+            Already registered? - {<Link to="/login">Login in</Link>}
+          </ToLogin>
         </Wrapper>
       </Page>
       <Toaster />

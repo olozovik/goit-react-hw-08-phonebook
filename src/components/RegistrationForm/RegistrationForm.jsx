@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { registration } from 'redux/auth/auth-operations';
-import { getError, getUserName } from 'redux/auth/auth-selectors';
 import { Input } from 'components/_share/Input/Input';
-import { ButtonStyled, LabelStyled } from './RegistrationForm.styled';
+import { authOperations, authSelectors } from 'redux/auth';
+import {
+  ButtonStyled,
+  FormStyled,
+  LabelStyled,
+} from './RegistrationForm.styled';
 
 export const RegistrationForm = () => {
   const [user, setUser] = useState({
@@ -22,8 +25,8 @@ export const RegistrationForm = () => {
     setUser({ ...user, confirmPassword: e.target.value });
 
   const dispatch = useDispatch();
-  const error = useSelector(getError);
-  const userName = useSelector(getUserName);
+  const error = useSelector(authSelectors.getError);
+  const userName = useSelector(authSelectors.getUserName);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -37,7 +40,7 @@ export const RegistrationForm = () => {
       email: user.email,
       password: user.password,
     };
-    dispatch(registration(newUser));
+    dispatch(authOperations.registration(newUser));
   };
 
   useEffect(() => {
@@ -59,7 +62,7 @@ export const RegistrationForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <FormStyled onSubmit={handleSubmit}>
         <LabelStyled>
           <p>Name</p>
           <Input
@@ -108,7 +111,7 @@ export const RegistrationForm = () => {
           />
         </LabelStyled>
         <ButtonStyled type="submit">Sign Up</ButtonStyled>
-      </form>
+      </FormStyled>
     </>
   );
 };

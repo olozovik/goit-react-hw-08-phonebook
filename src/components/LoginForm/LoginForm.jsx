@@ -1,10 +1,9 @@
-import { Input } from '../_share/Input/Input';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../redux/auth/auth-operations';
-import { getError } from '../../redux/auth/auth-selectors';
 import toast from 'react-hot-toast';
-import { ButtonStyled, LabelStyled } from './LoginForm.styled';
+import { Input } from '../_share/Input/Input';
+import { authOperations, authSelectors } from 'redux/auth';
+import { ButtonStyled, LabelStyled, LoginFormStyled } from './LoginForm.styled';
 
 export const LoginForm = () => {
   const [user, setUser] = useState({
@@ -13,7 +12,7 @@ export const LoginForm = () => {
   });
 
   const dispatch = useDispatch();
-  const error = useSelector(getError);
+  const error = useSelector(authSelectors.getError);
 
   useEffect(() => {
     if (!error) return;
@@ -29,11 +28,13 @@ export const LoginForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(login({ email: user.email, password: user.password }));
+    dispatch(
+      authOperations.login({ email: user.email, password: user.password }),
+    );
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <LoginFormStyled onSubmit={handleSubmit}>
       <LabelStyled>
         <p>Email</p>
         <Input
@@ -58,6 +59,6 @@ export const LoginForm = () => {
         />
       </LabelStyled>
       <ButtonStyled type="submit">Log in</ButtonStyled>
-    </form>
+    </LoginFormStyled>
   );
 };

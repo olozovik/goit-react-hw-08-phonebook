@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { phonebookSelectors } from 'redux/phonebook';
 import { ButtonDelete } from '../ButtonDelete/ButtonDelete';
+import { phonebookSelectors, phonebookOperations } from 'redux/phonebook';
 import {
   FirstColumn,
   LoadMoreButton,
   SecondColumn,
   TableStyled,
 } from './ContactList.styled';
-import { fetchContacts } from '../../redux/phonebook/phonebook-operations';
-import { getContacts } from '../../redux/phonebook/phonebook-selectors';
 
 function ContactList() {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(phonebookSelectors.getContacts);
 
   const perPageContacts = 10;
   const [page, setPage] = useState(1);
@@ -23,7 +21,7 @@ function ContactList() {
   const filter = useSelector(phonebookSelectors.getFilter);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(phonebookOperations.fetchContacts());
   }, [dispatch]);
 
   const filteredContacts = contacts.filter(({ name }) =>

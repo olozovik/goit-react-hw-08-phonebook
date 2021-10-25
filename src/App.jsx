@@ -1,16 +1,10 @@
 import { lazy, Suspense, useEffect, useRef } from 'react';
-import { Toaster } from 'react-hot-toast';
-import { Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getIsLoading,
-  getIsLogged,
-  getToken,
-} from './redux/auth/auth-selectors';
-import { getCurrentUser } from './redux/auth/auth-operations';
-import { token } from './redux/auth/auth-operations';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { PrivateRoute } from './components/PrivateRoute';
 import { PublicRoute } from './components/PublicRoute';
+import { authSelectors, authOperations } from './redux/auth';
 
 const LoginView = lazy(() => import('views/LoginView/LoginView'));
 const RegistrationView = lazy(() =>
@@ -19,18 +13,18 @@ const RegistrationView = lazy(() =>
 const ContactsView = lazy(() => import('views/ContactsView/ContactsView'));
 
 const App = () => {
-  const tokenExisting = useSelector(getToken);
+  const tokenExisting = useSelector(authSelectors.getToken);
   const dispatch = useDispatch();
   const isFirstLoadApp = useRef(true);
-  const isLogged = useSelector(getIsLogged);
-  const isLoading = useSelector(getIsLoading);
+  const isLogged = useSelector(authSelectors.getIsLogged);
+  const isLoading = useSelector(authSelectors.getIsLoading);
 
   useEffect(() => {
     if (!isFirstLoadApp.current) return;
     if (!tokenExisting) return;
 
-    token.set(tokenExisting);
-    dispatch(getCurrentUser(tokenExisting));
+    authOperations.token.set(tokenExisting);
+    dispatch(authOperations.getCurrentUser(tokenExisting));
 
     isFirstLoadApp.current = false;
   }, [dispatch, tokenExisting]);

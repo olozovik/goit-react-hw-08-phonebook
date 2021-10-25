@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const FormStyled = styled.form`
+  margin-bottom: 30px;
+`;
+
 export const LabelStyled = styled.label`
   display: block;
 

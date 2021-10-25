@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import { getIsLogged } from '../redux/auth/auth-selectors';
 import { Redirect, Route } from 'react-router-dom';
+import { authSelectors } from 'redux/auth';
 
 export const PrivateRoute = ({ children, routeProps }) => {
-  const isLogged = useSelector(getIsLogged);
+  const isLogged = useSelector(authSelectors.getIsLogged);
 
   return (
     <Route {...routeProps}>
