@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/auth-operations';
 import { getError } from '../../redux/auth/auth-selectors';
 import toast from 'react-hot-toast';
+import { ButtonStyled, LabelStyled } from './LoginForm.styled';
 
 export const LoginForm = () => {
   const [user, setUser] = useState({
@@ -33,7 +34,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      <LabelStyled>
         <p>Email</p>
         <Input
           type="email"
@@ -44,8 +45,8 @@ export const LoginForm = () => {
           value={user.email}
           onChange={handleEmailInput}
         />
-      </label>
-      <label>
+      </LabelStyled>
+      <LabelStyled>
         <p>Password</p>
         <Input
           type="password"
@@ -55,8 +56,8 @@ export const LoginForm = () => {
           value={user.password}
           onChange={handlePasswordInput}
         />
-      </label>
-      <button type="submit">Log in</button>
+      </LabelStyled>
+      <ButtonStyled type="submit">Log in</ButtonStyled>
     </form>
   );
 };

@@ -1,4 +1,9 @@
-import { HeaderStyled, LinkStyled } from './Header.styled';
+import {
+  ButtonStyled,
+  HeaderStyled,
+  LinkStyled,
+  WelcomeText,
+} from './Header.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserName } from '../../redux/auth/auth-selectors';
 import { logout } from '../../redux/auth/auth-operations';
@@ -18,10 +23,10 @@ export const Header = ({ logoutButton = false }) => {
       </h1>
       {logoutButton && (
         <div>
-          <span>Hello, {name}</span>
-          <button type="button" onClick={handleLogoutButton}>
+          <WelcomeText>Hello, {name}</WelcomeText>
+          <ButtonStyled type="button" onClick={handleLogoutButton}>
             Log out
-          </button>
+          </ButtonStyled>
         </div>
       )}
     </HeaderStyled>

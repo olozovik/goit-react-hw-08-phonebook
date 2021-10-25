@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import { registration } from 'redux/auth/auth-operations';
 import { getError, getUserName } from 'redux/auth/auth-selectors';
 import { Input } from 'components/_share/Input/Input';
+import { ButtonStyled, LabelStyled } from './RegistrationForm.styled';
 
 export const RegistrationForm = () => {
   const [user, setUser] = useState({
@@ -59,7 +60,7 @@ export const RegistrationForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label>
+        <LabelStyled>
           <p>Name</p>
           <Input
             type="text"
@@ -70,8 +71,8 @@ export const RegistrationForm = () => {
             value={user.name}
             onChange={handleNameInput}
           />
-        </label>
-        <label>
+        </LabelStyled>
+        <LabelStyled>
           <p>Email</p>
           <Input
             type="email"
@@ -81,8 +82,8 @@ export const RegistrationForm = () => {
             value={user.email}
             onChange={handleEmailInput}
           />
-        </label>
-        <label>
+        </LabelStyled>
+        <LabelStyled>
           <p>Password</p>
           <Input
             type="password"
@@ -93,8 +94,8 @@ export const RegistrationForm = () => {
             value={user.password}
             onChange={handlePasswordInput}
           />
-        </label>
-        <label>
+        </LabelStyled>
+        <LabelStyled>
           <p>Confirm password</p>
           <Input
             type="password"
@@ -105,8 +106,8 @@ export const RegistrationForm = () => {
             value={user.confirmPassword}
             onChange={handleConfirmPasswordInput}
           />
-        </label>
-        <button type="submit">Sign Up</button>
+        </LabelStyled>
+        <ButtonStyled type="submit">Sign Up</ButtonStyled>
       </form>
     </>
   );
