@@ -51,8 +51,8 @@ export const logout = createAsyncThunk(
 );
 
 //get the current user, if the token is exist
-export const refresh = createAsyncThunk(
-  'auth/refresh',
+export const getCurrentUser = createAsyncThunk(
+  'auth/getCurrentUser',
   async (user, { rejectWithValue }) => {
     try {
       return await axios.get('/users/current', user);

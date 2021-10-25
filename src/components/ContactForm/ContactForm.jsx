@@ -60,7 +60,7 @@ const ContactForm = () => {
 
     toast.success('The contacts is added');
     setIsLoading(false);
-  }, [contacts, isLoading]);
+  }, [contacts, error, isLoading]);
 
   return (
     <FormStyled autoComplete={'off'} onSubmit={handleSubmit}>

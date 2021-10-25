@@ -1,5 +1,4 @@
 import { TiDelete } from 'react-icons/ti';
-import Loader from 'react-loader-spinner';
 import { useTheme } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteContact } from '../../redux/phonebook/phonebook-operations';

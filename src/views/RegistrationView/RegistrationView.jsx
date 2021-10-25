@@ -11,7 +11,6 @@ const RegistrationView = () => {
       <Page>
         <Wrapper>
           <Header />
-          {/*Have you already registered? <Link>Login In</Login>*/}
           <h2>Create account:</h2>
           <p>Already registered? - {<Link to="/login">Login In</Link>}</p>
           <hr />

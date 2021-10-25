@@ -30,6 +30,7 @@ const middleware = getDefaultMiddleware => {
           'auth/login/rejected',
           'auth/refresh/fulfilled',
           'auth/refresh/rejected',
+          'auth/getCurrentUser/fulfilled',
         ],
       },
     }),
