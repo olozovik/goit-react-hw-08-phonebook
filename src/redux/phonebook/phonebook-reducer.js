@@ -51,7 +51,7 @@ const phonebookSlice = createSlice({
       .addCase(fetchDeleteContact.rejected, (state, action) => {
         state.error = action.payload;
       })
-      .addCase(authOperations.logout.pending, state => {
+      .addCase(authOperations.logout.fulfilled, state => {
         state.contacts = [];
         state.filter = '';
         state.error = null;
