@@ -37,7 +37,7 @@ const ButtonDelete = ({ id }) => {
   return (
     <ButtonDeleteStyled type="button" onClick={() => handleDeleteButton(id)}>
       <span>Delete</span>
-      <TiDelete />
+      {/*<TiDelete />*/}
     </ButtonDeleteStyled>
   );
 };

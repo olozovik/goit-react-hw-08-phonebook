@@ -4,6 +4,7 @@ import {
   fetchContacts,
   fetchDeleteContact,
 } from './phonebook-operations';
+import { authOperations } from 'redux/auth';
 
 const initialState = {
   filter: '',
@@ -49,6 +50,11 @@ const phonebookSlice = createSlice({
       })
       .addCase(fetchDeleteContact.rejected, (state, action) => {
         state.error = action.payload;
+      })
+      .addCase(authOperations.logout.pending, state => {
+        state.contacts = [];
+        state.filter = '';
+        state.error = null;
       });
   },
 });

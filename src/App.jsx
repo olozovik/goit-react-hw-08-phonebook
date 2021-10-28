@@ -42,9 +42,7 @@ const App = () => {
           <PrivateRoute path="/contacts">
             <ContactsView />
           </PrivateRoute>
-          <Route>
-            <Redirect to={isLogged ? '/contacts' : '/login'} />
-          </Route>
+          <Redirect to={isLogged ? '/contacts' : '/login'} />
           <Toaster />
         </Switch>
       </Suspense>
