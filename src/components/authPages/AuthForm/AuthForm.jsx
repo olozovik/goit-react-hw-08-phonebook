@@ -2,7 +2,7 @@ import { Box, Button, Container, TextField } from '@mui/material';
 
 export const AuthForm = ({ formDescription }) => {
   return (
-    <Container sx={{ width: '500px' }}>
+    <Container maxWidth={false} sx={{ maxWidth: '500px' }}>
       <Box
         component="form"
         autoComplete="off"

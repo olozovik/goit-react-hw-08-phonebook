@@ -10,9 +10,9 @@ import { Link as RouterLink } from 'react-router-dom';
 
 export const Header = ({ buttonText, link }) => {
   return (
-    <Box sx={{ flexGrow: 1, mb: '30px' }}>
+    <Box sx={{ flexGrow: 1, mb: '50px' }}>
       <AppBar position="static">
-        <Container>
+        <Container sx={{ p: 0 }}>
           <Toolbar>
             <Button
               component={RouterLink}
@@ -21,9 +21,9 @@ export const Header = ({ buttonText, link }) => {
               sx={{ mr: 'auto' }}
             >
               <Typography
-                variant="h4"
+                // variant="h3"
                 component="h1"
-                sx={{ textTransform: 'none' }}
+                sx={{ textTransform: 'none', fontSize: '40px' }}
               >
                 Phonebook
               </Typography>
