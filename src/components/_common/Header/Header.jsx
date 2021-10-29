@@ -7,8 +7,16 @@ import {
   Container,
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import * as authOperations from '../../../redux/auth/auth-operations';
+import { useDispatch } from 'react-redux';
 
-export const Header = ({ buttonText, link }) => {
+export const Header = ({ buttonText, link, contactsPage }) => {
+  const dispatch = useDispatch();
+
+  const handleLogoutButton = () => {
+    dispatch(authOperations.logout());
+  };
+
   return (
     <Box sx={{ flexGrow: 1, mb: '50px' }}>
       <AppBar position="static">
@@ -28,9 +36,15 @@ export const Header = ({ buttonText, link }) => {
                 Phonebook
               </Typography>
             </Button>
-            <Button component={RouterLink} to={link} color="inherit">
-              {buttonText}
-            </Button>
+            {contactsPage ? (
+              <Button color="inherit" onClick={handleLogoutButton}>
+                Log out
+              </Button>
+            ) : (
+              <Button component={RouterLink} to={link} color="inherit">
+                {buttonText}
+              </Button>
+            )}
           </Toolbar>
         </Container>
       </AppBar>
