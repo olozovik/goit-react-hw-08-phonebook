@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { Input } from 'components/_share/Input/Input';
 import { authOperations, authSelectors } from 'redux/auth';
-import {
-  ButtonStyled,
-  FormStyled,
-  LabelStyled,
-} from './RegistrationForm.styled';
+import { AuthForm } from '../AuthForm/AuthForm';
 
 export const RegistrationForm = () => {
   const [user, setUser] = useState({
@@ -60,58 +55,51 @@ export const RegistrationForm = () => {
     toast.success('Registration successful');
   }, [userName]);
 
-  return (
-    <>
-      <FormStyled onSubmit={handleSubmit}>
-        <LabelStyled>
-          <p>Name</p>
-          <Input
-            type="text"
-            name="name"
-            required
-            title="Enter your name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            value={user.name}
-            onChange={handleNameInput}
-          />
-        </LabelStyled>
-        <LabelStyled>
-          <p>Email</p>
-          <Input
-            type="email"
-            name="email"
-            required
-            title="Enter your email"
-            value={user.email}
-            onChange={handleEmailInput}
-          />
-        </LabelStyled>
-        <LabelStyled>
-          <p>Password</p>
-          <Input
-            type="password"
-            name="password"
-            required
-            title="Enter your password"
-            minLength="7"
-            value={user.password}
-            onChange={handlePasswordInput}
-          />
-        </LabelStyled>
-        <LabelStyled>
-          <p>Confirm password</p>
-          <Input
-            type="password"
-            name="confirmPassword"
-            required
-            title="Confirm your password"
-            minLength="7"
-            value={user.confirmPassword}
-            onChange={handleConfirmPasswordInput}
-          />
-        </LabelStyled>
-        <ButtonStyled type="submit">Sign Up</ButtonStyled>
-      </FormStyled>
-    </>
-  );
+  const formDescription = {
+    inputs: [
+      {
+        label: 'Name',
+        type: 'text',
+        name: 'name',
+        title: 'Enter your name',
+        pattern: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+        value: user.name,
+        onChange: handleNameInput,
+        required: true,
+      },
+      {
+        label: 'Email',
+        type: 'email',
+        name: 'email',
+        title: 'Enter your email',
+        value: user.email,
+        onChange: handleEmailInput,
+        required: true,
+      },
+      {
+        label: 'Password',
+        type: 'password',
+        name: 'password',
+        title: 'Enter password',
+        minLength: '7',
+        value: user.password,
+        onChange: handlePasswordInput,
+        required: true,
+      },
+      {
+        label: 'Confirm password',
+        type: 'password',
+        name: 'confirmPassword',
+        title: 'Confirm password',
+        minLength: '7',
+        value: user.confirmPassword,
+        onChange: handleConfirmPasswordInput,
+        required: true,
+      },
+    ],
+    button: { text: 'login' },
+    handleSubmit: handleSubmit,
+  };
+
+  return <AuthForm formDescription={formDescription} />;
 };

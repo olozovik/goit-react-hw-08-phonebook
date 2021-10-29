@@ -2,7 +2,7 @@ import { Toaster } from 'react-hot-toast';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
-import { Header } from 'components/Header/Header';
+import { HeaderOld } from 'components/_common/HeaderOld/HeaderOld';
 import { Page } from 'components/Page/Page';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 import { ContactsHeadingStyled } from './ContactsView.styled';
@@ -12,7 +12,7 @@ const ContactsView = () => {
     <>
       <Page>
         <Wrapper>
-          <Header logoutButton />
+          <HeaderOld logoutButton />
           <ContactForm />
           <ContactsHeadingStyled>Contacts</ContactsHeadingStyled>
           <Filter />

@@ -1,3 +1,5 @@
+import { createTheme } from '@mui/material';
+
 export const theme = {
   pageBgColor: '#d3d3d3',
   wrapperBgColor: '#ffdf93',
@@ -7,3 +9,5 @@ export const theme = {
 
   buttonActiveHover: '#ff9900',
 };
+
+export const muiTheme = createTheme();

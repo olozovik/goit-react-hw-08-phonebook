@@ -1,24 +1,16 @@
-import { Link } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { Header } from 'components/Header/Header';
-import { Page } from 'components/Page/Page';
-import { Wrapper } from 'components/Wrapper/Wrapper';
-import { RegistrationForm } from 'components/RegistrationForm/RegistrationForm';
-import { CreateAccountHeading, ToLogin } from './RegistrationView.styled';
+import { RegistrationForm } from 'components/authPages/RegistrationForm/RegistrationForm';
+import { Header } from '../../components/_common/Header/Header';
+import { AuthFormText } from 'components/authPages/AuthFormText/AuthFormText';
+import { AuthFromTitle } from 'components/authPages/AuthFromTitle/AuthFromTitle';
 
 const RegistrationView = () => {
   return (
     <>
-      <Page>
-        <Wrapper>
-          <Header />
-          <CreateAccountHeading>Create account:</CreateAccountHeading>
-          <RegistrationForm />
-          <ToLogin>
-            Already registered? - {<Link to="/login">Login in</Link>}
-          </ToLogin>
-        </Wrapper>
-      </Page>
+      <Header link="/login" buttonText="Log in" />
+      <AuthFromTitle>Create account: </AuthFromTitle>
+      <RegistrationForm />
+      <AuthFormText text="Already registered? - Login in" link="/login" />
       <Toaster />
     </>
   );
