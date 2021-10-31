@@ -18,15 +18,15 @@ export const Header = ({ buttonText, link, contactsPage }) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, mb: '50px' }}>
-      <AppBar position="static">
-        <Container sx={{ p: 0 }}>
-          <Toolbar>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{ p: '8px' }}>
+        <Container>
+          <Toolbar disableGutters>
             <Button
               component={RouterLink}
               to="/"
               color="inherit"
-              sx={{ mr: 'auto' }}
+              sx={{ mr: 'auto', paddingX: 0 }}
             >
               <Typography
                 // variant="h3"

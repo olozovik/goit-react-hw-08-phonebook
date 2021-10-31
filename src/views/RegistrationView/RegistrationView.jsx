@@ -7,10 +7,10 @@ import { AuthFromTitle } from 'components/authPages/AuthFromTitle/AuthFromTitle'
 const RegistrationView = () => {
   return (
     <>
-      <Header link="/login" buttonText="Log in" />
+      <Header link="/login" buttonText="Log In" />
       <AuthFromTitle>Create account: </AuthFromTitle>
       <RegistrationForm />
-      <AuthFormText text="Already registered? - Login in" link="/login" />
+      <AuthFormText text="Already registered? - Log In" link="/login" />
       <Toaster />
     </>
   );

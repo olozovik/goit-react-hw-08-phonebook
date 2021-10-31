@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { TiDelete } from 'react-icons/ti';
 import { useTheme } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { ButtonDeleteStyled } from './ButtonDelete.styled';
 import { phonebookOperations, phonebookSelectors } from 'redux/phonebook';
+import { DeleteForeverOutlined, AutorenewOutlined } from '@mui/icons-material';
+import { Button } from '@mui/material';
 
 const ButtonDelete = ({ id }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +25,9 @@ const ButtonDelete = ({ id }) => {
 
     const deleteToastSettings = {
       icon: (
-        <TiDelete style={{ color: activeColor.current, fontSize: '30px' }} />
+        <DeleteForeverOutlined
+          style={{ color: activeColor.current, fontSize: '30px' }}
+        />
       ),
       duration: 2000,
     };
@@ -35,10 +37,13 @@ const ButtonDelete = ({ id }) => {
   }, [isLoading, contacts]);
 
   return (
-    <ButtonDeleteStyled type="button" onClick={() => handleDeleteButton(id)}>
-      <span>Delete</span>
-      {/*<TiDelete />*/}
-    </ButtonDeleteStyled>
+    <Button type="button" onClick={() => handleDeleteButton(id)}>
+      {isLoading ? (
+        <AutorenewOutlined />
+      ) : (
+        <DeleteForeverOutlined color="warning" />
+      )}
+    </Button>
   );
 };
 

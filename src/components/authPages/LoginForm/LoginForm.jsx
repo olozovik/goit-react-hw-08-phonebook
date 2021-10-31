@@ -54,7 +54,7 @@ export const LoginForm = () => {
         required: true,
       },
     ],
-    button: { text: 'login' },
+    button: { text: 'Log In' },
     handleSubmit: handleSubmit,
   };
 

@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ButtonDelete } from '../ButtonDelete/ButtonDelete';
+import { ButtonDelete } from '../../ButtonDelete/ButtonDelete';
 import { phonebookSelectors, phonebookOperations } from 'redux/phonebook';
-import {
-  FirstColumn,
-  LoadMoreButton,
-  SecondColumn,
-  TableStyled,
-} from './ContactList.styled';
+import { StyledTable } from './ContactListStyled';
+import { Container } from '@mui/material';
 
 function ContactList() {
   const dispatch = useDispatch();
@@ -38,14 +34,14 @@ function ContactList() {
   const isLoadMore = numberContactsToShow < filteredContacts.length;
 
   return (
-    <>
+    <Container maxWidth="md" sx={{ '@media (max-width: 600px)': { p: 0 } }}>
       {filterResultStatus === 'no contacts' && (
         <p>There are no contacts here yet.</p>
       )}
       {filterResultStatus === 'not found' && (
         <p>There are no contacts with this name.</p>
       )}
-      <TableStyled>
+      <StyledTable>
         <tbody>
           {filteredContacts
             ?.reverse()
@@ -53,8 +49,8 @@ function ContactList() {
             .map(({ id, name, number }) => {
               return (
                 <tr key={id}>
-                  <FirstColumn>{name}</FirstColumn>
-                  <SecondColumn>{number}</SecondColumn>
+                  <td>{name}</td>
+                  <td>{number}</td>
                   <td>
                     <ButtonDelete id={id} />
                   </td>
@@ -62,13 +58,13 @@ function ContactList() {
               );
             })}
         </tbody>
-      </TableStyled>
+      </StyledTable>
       {isLoadMore && (
-        <LoadMoreButton type="button" onClick={handleLoadMoreButton}>
+        <button type="button" onClick={handleLoadMoreButton}>
           Show more contacts...
-        </LoadMoreButton>
+        </button>
       )}
-    </>
+    </Container>
   );
 }
 

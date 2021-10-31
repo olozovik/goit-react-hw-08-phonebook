@@ -38,7 +38,7 @@ export const AuthForm = ({ formDescription }) => {
         })}
 
         <Button variant="contained" fullWidth type="submit">
-          Login
+          {formDescription.button.text}
         </Button>
       </Box>
     </Container>

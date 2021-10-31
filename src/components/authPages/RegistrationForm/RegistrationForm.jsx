@@ -97,7 +97,7 @@ export const RegistrationForm = () => {
         required: true,
       },
     ],
-    button: { text: 'login' },
+    button: { text: 'Sign Up' },
     handleSubmit: handleSubmit,
   };
 

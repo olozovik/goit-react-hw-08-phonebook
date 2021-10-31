@@ -1,0 +1,138 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { phonebookOperations, phonebookSelectors } from 'redux/phonebook';
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { PersonAdd } from '@mui/icons-material';
+
+const AddContact = () => {
+  const contacts = useSelector(phonebookSelectors.getContacts);
+  const error = useSelector(phonebookSelectors.getError);
+  const dispatch = useDispatch();
+
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setName('');
+    setNumber('');
+  }, [contacts.length]);
+
+  const handleOnChange = e => {
+    switch (e.target.name) {
+      case 'name':
+        return setName(e.target.value);
+      case 'number':
+        return setNumber(e.target.value);
+      default:
+        return;
+    }
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    const isContactExisting = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
+
+    if (isContactExisting) {
+      toast.error(`${name} is already in contacts`);
+      return;
+    }
+    setIsLoading(true);
+    await dispatch(phonebookOperations.fetchAddContact({ name, number }));
+  };
+
+  useEffect(() => {
+    if (!isLoading) return;
+
+    if (error) {
+      toast.error('The contacts is not added');
+      setIsLoading(false);
+      return;
+    }
+
+    toast.success('The contacts is added');
+    setIsLoading(false);
+  }, [contacts, error, isLoading]);
+
+  return (
+    <>
+      <Box
+        sx={{
+          mt: '10px',
+          mb: '20px',
+          p: '20px 0',
+          borderBottom: '1px solid lightgrey',
+        }}
+      >
+        <Container maxWidth="md">
+          <Typography component="h2" variant="h5" sx={{ mb: '20px' }}>
+            Add contact
+          </Typography>
+          <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+            <Grid container spacing={2} sx={{ alignItems: 'flex-end' }}>
+              <Grid item xs={10} sm={5}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  label="Name"
+                  type="text"
+                  name="name"
+                  required={true}
+                  onChange={handleOnChange}
+                  value={name}
+                  inputProps={{
+                    pattern:
+                      "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+                    title:
+                      "Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п.",
+                  }}
+                />
+              </Grid>
+              <Grid item xs={10} sm={5}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  label="Number"
+                  type="tel"
+                  name="number"
+                  required={true}
+                  onChange={handleOnChange}
+                  value={number}
+                  inputProps={{
+                    pattern:
+                      '\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}',
+                    title:
+                      'Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +',
+                  }}
+                />
+              </Grid>
+              <Grid item xs={2} sm={1}>
+                <Button
+                  type="submit"
+                  sx={{ display: 'block', p: 0, ml: 'auto' }}
+                >
+                  <PersonAdd
+                    sx={{ display: 'block', fontSize: '55px', mb: '-7px' }}
+                  />
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
+        </Container>
+      </Box>
+    </>
+  );
+};
+
+export { AddContact };
