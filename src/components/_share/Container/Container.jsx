@@ -1,9 +1,10 @@
-import { Container, Grid } from '@mui/material';
+import { StyledContainerForm } from './Container.styled';
+import { StyledContainerMd } from './Container.styled';
 
 export const ContainerMd = ({ children }) => {
-  return (
-    <Container maxWidth="md" sx={{ outline: '1px dotted tomato' }}>
-      {children}
-    </Container>
-  );
+  return <StyledContainerMd>{children}</StyledContainerMd>;
+};
+
+export const ContainerForm = ({ children }) => {
+  return <StyledContainerForm>{children}</StyledContainerForm>;
 };

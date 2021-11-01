@@ -1,13 +1,8 @@
 import { createTheme } from '@mui/material';
 
 export const theme = {
-  pageBgColor: '#d3d3d3',
-  wrapperBgColor: '#ffdf93',
-
-  inputBorderColor: '#bebcbc',
-  inputHoverBorderColor: '#ff9900',
-
-  buttonActiveHover: '#ff9900',
+  headerBgColor: '#0f6cd6',
+  headerTextColor: '#faf493',
 };
 
 export const muiTheme = createTheme();
