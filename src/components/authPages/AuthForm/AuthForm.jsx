@@ -1,16 +1,18 @@
-import { Box, Button, Container, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
+import { ContainerForm } from 'components/_share/Container/Container';
+import { AuthFormStyled } from './AuthForm.styled';
 
 export const AuthForm = ({ formDescription }) => {
   return (
-    <Container maxWidth={false} sx={{ maxWidth: '500px' }}>
-      <Box
-        component="form"
+    <ContainerForm>
+      <AuthFormStyled
         autoComplete="off"
         onSubmit={formDescription.handleSubmit}
-        sx={{ mb: '10px' }}
       >
         {formDescription.inputs.map(input => {
           const {
+            id,
+            autocomplete = false,
             name,
             label,
             type,
@@ -22,6 +24,8 @@ export const AuthForm = ({ formDescription }) => {
           } = input;
           return (
             <TextField
+              id={id}
+              autoComplete={autocomplete}
               key={name}
               fullWidth
               label={label}
@@ -40,7 +44,7 @@ export const AuthForm = ({ formDescription }) => {
         <Button variant="contained" fullWidth type="submit">
           {formDescription.button.text}
         </Button>
-      </Box>
-    </Container>
+      </AuthFormStyled>
+    </ContainerForm>
   );
 };

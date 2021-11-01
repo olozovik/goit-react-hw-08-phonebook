@@ -35,6 +35,7 @@ export const LoginForm = () => {
   const formDescription = {
     inputs: [
       {
+        id: 'current-email',
         label: 'Email',
         type: 'email',
         name: 'email',
@@ -44,6 +45,8 @@ export const LoginForm = () => {
         required: true,
       },
       {
+        id: 'current-password',
+        autocomplete: 'current-password',
         label: 'Password',
         type: 'password',
         name: 'password',

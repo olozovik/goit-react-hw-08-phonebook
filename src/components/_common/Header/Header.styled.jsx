@@ -1,25 +1,25 @@
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-export const StyledHeader = styled.header`
+export const HeaderStyled = styled.header`
   padding: 15px 0;
   background-color: ${props => props.theme.headerBgColor};
 `;
 
-export const StyledInnerWrapperHeader = styled.div`
+export const HeaderInnerWrapperStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const StyledLinkLogo = styled(Link)`
+export const LogoLinkStyled = styled(Link)`
   font-size: 40px;
   font-weight: 500;
   color: ${props => props.theme.headerTextColor};
   text-decoration: none;
 `;
 
-export const StyledButton = styled.button`
+export const HeaderButtonStyled = styled.button`
   color: ${props => props.theme.headerTextColor};
   text-transform: uppercase;
   background-color: transparent;
@@ -29,7 +29,7 @@ export const StyledButton = styled.button`
   font-weight: 600;
 `;
 
-export const StyledLinkAuth = styled(Link)`
+export const HeaderLinkAuthStyled = styled(Link)`
   color: ${props => props.theme.headerTextColor};
   text-transform: uppercase;
   font-size: 14px;

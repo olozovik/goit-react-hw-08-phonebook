@@ -2,11 +2,11 @@ import * as authOperations from 'redux/auth/auth-operations';
 import { useDispatch } from 'react-redux';
 import { ContainerMd } from 'components/_share/Container/Container';
 import {
-  StyledHeader,
-  StyledInnerWrapperHeader,
-  StyledLinkLogo,
-  StyledButton,
-  StyledLinkAuth,
+  HeaderStyled,
+  HeaderInnerWrapperStyled,
+  LogoLinkStyled,
+  HeaderButtonStyled,
+  HeaderLinkAuthStyled,
 } from './Header.styled';
 
 export const Header = ({ buttonText, link, contactsPage }) => {
@@ -18,22 +18,22 @@ export const Header = ({ buttonText, link, contactsPage }) => {
 
   return (
     <>
-      <StyledHeader>
+      <HeaderStyled>
         <ContainerMd>
-          <StyledInnerWrapperHeader>
-            <StyledLinkLogo to="/">Phonebook</StyledLinkLogo>
+          <HeaderInnerWrapperStyled>
+            <LogoLinkStyled to="/">Phonebook</LogoLinkStyled>
             {contactsPage ? (
-              <StyledButton type="button" onClick={handleLogoutButton}>
+              <HeaderButtonStyled type="button" onClick={handleLogoutButton}>
                 Log out
-              </StyledButton>
+              </HeaderButtonStyled>
             ) : (
-              <StyledLinkAuth to={link} color="inherit">
+              <HeaderLinkAuthStyled to={link} color="inherit">
                 {buttonText}
-              </StyledLinkAuth>
+              </HeaderLinkAuthStyled>
             )}
-          </StyledInnerWrapperHeader>
+          </HeaderInnerWrapperStyled>
         </ContainerMd>
-      </StyledHeader>
+      </HeaderStyled>
       {/* <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ p: '8px' }}>
           <Container>

@@ -58,6 +58,7 @@ export const RegistrationForm = () => {
   const formDescription = {
     inputs: [
       {
+        id: 'new-name',
         label: 'Name',
         type: 'text',
         name: 'name',
@@ -68,6 +69,7 @@ export const RegistrationForm = () => {
         required: true,
       },
       {
+        id: 'new-email',
         label: 'Email',
         type: 'email',
         name: 'email',
@@ -77,6 +79,8 @@ export const RegistrationForm = () => {
         required: true,
       },
       {
+        id: 'new-password',
+        autocomplete: 'new-password',
         label: 'Password',
         type: 'password',
         name: 'password',
@@ -87,6 +91,7 @@ export const RegistrationForm = () => {
         required: true,
       },
       {
+        id: 'confirm-new-password',
         label: 'Confirm password',
         type: 'password',
         name: 'confirmPassword',

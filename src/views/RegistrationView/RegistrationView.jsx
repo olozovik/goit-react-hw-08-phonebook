@@ -2,13 +2,13 @@ import { Toaster } from 'react-hot-toast';
 import { RegistrationForm } from 'components/authPages/RegistrationForm/RegistrationForm';
 import { Header } from '../../components/_common/Header/Header';
 import { AuthFormText } from 'components/authPages/AuthFormText/AuthFormText';
-import { AuthFromTitle } from 'components/authPages/AuthFromTitle/AuthFromTitle';
+import { AuthFormTitle } from 'components/authPages/AuthFormTitle/AuthFormTitle';
 
 const RegistrationView = () => {
   return (
     <>
       <Header link="/login" buttonText="Log In" />
-      <AuthFromTitle>Create account: </AuthFromTitle>
+      <AuthFormTitle>Create account: </AuthFormTitle>
       <RegistrationForm />
       <AuthFormText text="Already registered? - Log In" link="/login" />
       <Toaster />

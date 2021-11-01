@@ -1,12 +1,10 @@
-import { Container, Button } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { ContainerForm } from '../../_share/Container/Container';
+import { AuthFormTextStyled } from './AuthFormText.styled';
 
 export const AuthFormText = ({ text, link }) => {
   return (
-    <Container maxWidth={false} sx={{ maxWidth: '500px' }}>
-      <Button component={RouterLink} to={link}>
-        {text}
-      </Button>
-    </Container>
+    <ContainerForm>
+      <AuthFormTextStyled to={link}>{text}</AuthFormTextStyled>
+    </ContainerForm>
   );
 };
