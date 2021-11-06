@@ -12,7 +12,7 @@ export const AuthForm = ({ formDescription }) => {
         {formDescription.inputs.map(input => {
           const {
             id,
-            autocomplete = false,
+            autocomplete,
             name,
             label,
             type,
