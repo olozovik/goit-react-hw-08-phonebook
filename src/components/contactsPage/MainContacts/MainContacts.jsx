@@ -1,17 +1,16 @@
-import { Container, Typography, Grid } from '@mui/material';
-import { Filter } from '../Filter/Filter';
-import { ContactList } from '../ContactList/ContactList';
+import { Filter } from './Filter/Filter';
+import { ContactList } from './ContactList/ContactList';
+import { ContainerMd } from '../../_share/Container/Container';
+import { TitleContactsStyled } from './ManeContacts.styled';
 
 export const MainContacts = () => {
   return (
     <>
-      <Container maxWidth="md">
-        <Typography component="h2" variant="h5" sx={{ mb: '10px' }}>
-          Contacts
-        </Typography>
+      <ContainerMd>
+        <TitleContactsStyled>Contacts</TitleContactsStyled>
         <Filter />
-      </Container>
-      <ContactList />
+        <ContactList />
+      </ContainerMd>
     </>
   );
 };

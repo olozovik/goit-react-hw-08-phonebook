@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 export const StyledTable = styled.table`
   width: 100%;
   font-size: 20px;
-  line-height: 3;
+  line-height: 2.4;
 
   @media (max-width: 600px) {
-    line-height: 2.7;
+    line-height: 2.4;
   }
 
   & tr {

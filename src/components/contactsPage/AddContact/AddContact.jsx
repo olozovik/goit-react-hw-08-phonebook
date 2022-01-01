@@ -107,7 +107,11 @@ const AddContact = () => {
           </InputsWrapperStyled>
           <ButtonStyled type="submit">
             <PersonAdd
-              sx={{ display: 'block', fontSize: '55px', mb: '-7px' }}
+              sx={{
+                display: 'block',
+                fontSize: '55px',
+                mb: '-7px',
+              }}
             />
           </ButtonStyled>
         </FormStyled>

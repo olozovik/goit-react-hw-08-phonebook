@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Button, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 
 export const AddContactStyled = styled.div`
   margin-bottom: 30px;
@@ -29,6 +29,7 @@ export const InputsWrapperStyled = styled.div`
 `;
 
 export const ButtonStyled = styled(Button)`
+  padding: 0;
   & svg {
     width: 44px;
     margin-top: -4px;

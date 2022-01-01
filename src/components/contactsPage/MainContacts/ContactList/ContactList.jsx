@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ButtonDelete } from '../../ButtonDelete/ButtonDelete';
+import { ButtonDelete } from './ButtonDelete/ButtonDelete';
 import { phonebookSelectors, phonebookOperations } from 'redux/phonebook';
 import { StyledTable } from './ContactListStyled';
-import { Container } from '@mui/material';
 
 function ContactList() {
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ function ContactList() {
   const isLoadMore = numberContactsToShow < filteredContacts.length;
 
   return (
-    <Container maxWidth="md" sx={{ '@media (max-width: 600px)': { p: 0 } }}>
+    <>
       {filterResultStatus === 'no contacts' && (
         <p>There are no contacts here yet.</p>
       )}
@@ -64,7 +63,7 @@ function ContactList() {
           Show more contacts...
         </button>
       )}
-    </Container>
+    </>
   );
 }
 
