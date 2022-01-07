@@ -1,14 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
+import { Clear } from '@mui/icons-material';
 import { phonebookOperations, phonebookSelectors } from 'redux/phonebook';
-import {
-  DeleteForeverOutlined,
-  AutorenewOutlined,
-  Clear,
-} from '@mui/icons-material';
-import { Button } from '@mui/material';
 import { DeleteButtonStyled } from './ButtonDelete.styled';
 
 const ButtonDelete = ({ id }) => {
@@ -23,24 +18,21 @@ const ButtonDelete = ({ id }) => {
     await dispatch(phonebookOperations.fetchDeleteContact(id));
   };
 
-  const activeColor = useRef(theme.buttonActiveHover);
-
   useEffect(() => {
     if (!isLoading) return;
 
     const deleteToastSettings = {
-      icon: <DeleteForeverOutlined style={{ fontSize: '30px' }} />,
+      icon: (
+        <Clear style={{ fontSize: '30px', color: theme.deleteButtonColor }} />
+      ),
       duration: 2000,
     };
 
     toast('The contacts is deleted', deleteToastSettings);
     setIsLoading(false);
-  }, [isLoading, contacts]);
+  }, [isLoading, contacts, theme.deleteButtonColor]);
 
   return (
-    // <Button type="button" onClick={() => handleDeleteButton(id)}>
-    //   {isLoading ? <AutorenewOutlined /> : <DeleteButtonStyled />}
-    // </Button>
     <>
       <DeleteButtonStyled
         type="button"

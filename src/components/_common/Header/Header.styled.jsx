@@ -20,19 +20,19 @@ export const LogoLinkStyled = styled(Link)`
 `;
 
 export const HeaderButtonStyled = styled.button`
+  font-size: 14px;
+  font-weight: 600;
   color: ${props => props.theme.headerTextColor};
   text-transform: uppercase;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
 `;
 
 export const HeaderLinkAuthStyled = styled(Link)`
-  color: ${props => props.theme.headerTextColor};
-  text-transform: uppercase;
   font-size: 14px;
   font-weight: 600;
+  text-transform: uppercase;
+  color: ${props => props.theme.headerTextColor};
   text-decoration: none;
 `;

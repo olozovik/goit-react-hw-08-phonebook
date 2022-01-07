@@ -2,15 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonDelete } from './ButtonDelete/ButtonDelete';
 import { phonebookSelectors, phonebookOperations } from 'redux/phonebook';
-import { StyledTable } from './ContactListStyled';
+import { StyledTable, TableWrapper } from './ContactListStyled';
 
 function ContactList() {
   const dispatch = useDispatch();
   const contacts = useSelector(phonebookSelectors.getContacts);
-
-  const perPageContacts = 10;
-  const [page, setPage] = useState(1);
-  const handleLoadMoreButton = () => setPage(p => p + 1);
 
   const [filterResultStatus, setFilterResultStatus] = useState('idle');
   const filter = useSelector(phonebookSelectors.getFilter);
@@ -29,11 +25,8 @@ function ContactList() {
     if (filter && !filteredContacts.length) setFilterResultStatus('not found');
   }, [contacts.length, filteredContacts.length, filter]);
 
-  const numberContactsToShow = perPageContacts * page;
-  const isLoadMore = numberContactsToShow < filteredContacts.length;
-
   return (
-    <>
+    <TableWrapper>
       {filterResultStatus === 'no contacts' && (
         <p>There are no contacts here yet.</p>
       )}
@@ -42,28 +35,20 @@ function ContactList() {
       )}
       <StyledTable>
         <tbody>
-          {filteredContacts
-            ?.reverse()
-            .slice(0, numberContactsToShow)
-            .map(({ id, name, number }) => {
-              return (
-                <tr key={id}>
-                  <td>{name}</td>
-                  <td>{number}</td>
-                  <td>
-                    <ButtonDelete id={id} />
-                  </td>
-                </tr>
-              );
-            })}
+          {filteredContacts?.reverse().map(({ id, name, number }) => {
+            return (
+              <tr key={id}>
+                <td>{name}</td>
+                <td>{number}</td>
+                <td>
+                  <ButtonDelete id={id} />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </StyledTable>
-      {isLoadMore && (
-        <button type="button" onClick={handleLoadMoreButton}>
-          Show more contacts...
-        </button>
-      )}
-    </>
+    </TableWrapper>
   );
 }
 

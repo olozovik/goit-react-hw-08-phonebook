@@ -1,14 +1,15 @@
-import { Clear } from '@mui/icons-material';
 import styled from '@emotion/styled';
 
 export const DeleteButtonStyled = styled.button`
-  padding: 10px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: gray;
-  background-color: transparent;
+  align-items: center;
+  margin-left: auto;
+  padding: 10px;
+
   border: none;
+  background-color: transparent;
+  color: gray;
   cursor: pointer;
 
   & svg {

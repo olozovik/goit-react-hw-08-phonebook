@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { phonebookReducer } from 'redux/phonebook';
-import { InputAdornment, TextField } from '@mui/material';
+import { InputAdornment } from '@mui/material';
 import { Search } from '@mui/icons-material';
+import { phonebookReducer } from 'redux/phonebook';
 import { TextFieldStyled } from './Filter.styled';
 
 function Filter() {

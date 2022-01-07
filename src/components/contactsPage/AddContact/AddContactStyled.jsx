@@ -30,6 +30,7 @@ export const InputsWrapperStyled = styled.div`
 
 export const ButtonStyled = styled(Button)`
   padding: 0;
+
   & svg {
     width: 44px;
     margin-top: -4px;
@@ -42,6 +43,6 @@ export const ButtonStyled = styled(Button)`
 
 export const TitleStyled = styled.h2`
   margin: 30px 0 15px;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 400;
 `;
