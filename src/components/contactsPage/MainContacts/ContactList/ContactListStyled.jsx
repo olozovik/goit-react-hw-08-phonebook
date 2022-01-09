@@ -34,6 +34,10 @@ export const StyledTable = styled.table`
     & td:last-of-type {
       padding-right: 10px;
     }
+
+    &:hover {
+      color: ${props => props.theme.authLinkColor};
+    }
   }
 
   & tr:nth-of-type(2n + 1) {
