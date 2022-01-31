@@ -27,9 +27,7 @@ function ContactList() {
 
   return (
     <TableWrapper>
-      {filterResultStatus === 'no contacts' && (
-        <p>There are no contacts here yet.</p>
-      )}
+      {filterResultStatus === 'no contacts' && <p>There are no contacts.</p>}
       {filterResultStatus === 'not found' && (
         <p>There are no contacts with this name.</p>
       )}

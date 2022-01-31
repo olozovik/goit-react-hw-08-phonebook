@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, Switch } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { PrivateRoute } from './components/PrivateRoute';
 import { PublicRoute } from './components/PublicRoute';
@@ -32,19 +32,39 @@ const App = () => {
   return (
     !isLoading && (
       <Suspense fallback={null}>
-        <Switch>
-          <PublicRoute restricted path="/login">
-            <LoginView />
-          </PublicRoute>
-          <PublicRoute restricted path="/register">
-            <RegistrationView />
-          </PublicRoute>
-          <PrivateRoute path="/contacts">
-            <ContactsView />
-          </PrivateRoute>
-          <Redirect to={isLogged ? '/contacts' : '/login'} />
-          <Toaster />
-        </Switch>
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              <PublicRoute restricted>
+                <LoginView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute restricted>
+                <RegistrationView />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <ContactsView />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              isLogged ? <Navigate to="/contacts" /> : <Navigate to="/login" />
+            }
+          />
+        </Routes>
+        <Toaster />
       </Suspense>
     )
   );
