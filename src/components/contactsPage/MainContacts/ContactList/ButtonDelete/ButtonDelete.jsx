@@ -3,6 +3,7 @@ import { useTheme } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { Clear } from '@mui/icons-material';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { phonebookOperations, phonebookSelectors } from 'redux/phonebook';
 import { DeleteButtonStyled } from './ButtonDelete.styled';
 
@@ -39,7 +40,7 @@ const ButtonDelete = ({ id }) => {
         onClick={() => handleDeleteButton(id)}
         title="Delete"
       >
-        <Clear />
+        <DeleteOutlineOutlinedIcon />
       </DeleteButtonStyled>
     </>
   );

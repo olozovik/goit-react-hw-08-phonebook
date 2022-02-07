@@ -44,3 +44,8 @@ export const StyledTable = styled.table`
     background-color: ${props => props.theme.tableDarkRow};
   }
 `;
+
+export const PhoneStyled = styled.a`
+  color: inherit;
+  text-decoration: none;
+`;

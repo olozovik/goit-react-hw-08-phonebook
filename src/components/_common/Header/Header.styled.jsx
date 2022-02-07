@@ -2,8 +2,12 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 export const HeaderStyled = styled.header`
-  padding: 15px 0;
+  padding: 16px 15px;
   background-color: ${props => props.theme.headerBgColor};
+
+  @media (min-width: 1200px) {
+    padding: 16px 75px;
+  }
 `;
 
 export const HeaderInnerWrapperStyled = styled.div`
@@ -13,7 +17,7 @@ export const HeaderInnerWrapperStyled = styled.div`
 `;
 
 export const LogoLinkStyled = styled(Link)`
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 500;
   color: ${props => props.theme.headerTextColor};
   text-decoration: none;

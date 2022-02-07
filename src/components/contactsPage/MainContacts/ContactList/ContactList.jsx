@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ButtonDelete } from './ButtonDelete/ButtonDelete';
 import { phonebookSelectors, phonebookOperations } from 'redux/phonebook';
 import { StyledTable, TableWrapper } from './ContactListStyled';
+import { PhoneStyled } from './ContactListStyled';
 
 function ContactList() {
   const dispatch = useDispatch();
@@ -37,7 +38,10 @@ function ContactList() {
             return (
               <tr key={id}>
                 <td>{name}</td>
-                <td>{number}</td>
+                {/* <td>{number}</td> */}
+                <td>
+                  <PhoneStyled href="tel:{number}">{number}</PhoneStyled>
+                </td>
                 <td>
                   <ButtonDelete id={id} />
                 </td>
